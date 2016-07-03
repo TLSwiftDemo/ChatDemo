@@ -17,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
+
+        
+        NSUserDefaults.saveIncomingAvatarSetting(true)
+        NSUserDefaults.saveOutgoingAvatarSetting(true)
+        
+        NSUserDefaults.saveExtraMessagesSetting(true)
+        
         let nav = UINavigationController(rootViewController: GuideTableController())
         self.window?.rootViewController = nav
         return true

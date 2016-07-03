@@ -23,7 +23,17 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closePressed(_:)))
+        
+        
+        if(self.delegateModal != nil){
+        
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop, target: self, action: #selector(closePressed(_:)))
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.collectionView.collectionViewLayout.springinessEnabled = false
     }
     
     override func viewDidLoad() {
@@ -31,17 +41,26 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
         self.title = "JSQMessage"
         self.inputToolbar.contentView.textView.pasteDelegate = self
         
+        
         //加载我们自己的历史聊天消息
         self.demoData = DemoModelData()
         
-        //可以自己设置头像尺寸
-        if(NSUserDefaults.incomingAvatarSetting() == false){
-          self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-        }
+        self.senderId = getSenderId()
+        self.senderDisplayName = getSenderDisplayName()
+       
         
-        if(NSUserDefaults.outgoingAvatarSetting() == false){
-          self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
-        }
+        
+        //可以自己设置头像尺寸
+        
+         self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(50, 50)
+        self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeMake(50, 50)
+//        if(NSUserDefaults.incomingAvatarSetting() == false){
+//          self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
+//        }
+//        
+//        if(NSUserDefaults.outgoingAvatarSetting() == false){
+//          self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
+//        }
         
         self.showLoadEarlierMessagesHeader = true
         
@@ -56,7 +75,18 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
         
         JSQMessagesCollectionViewCell.registerMenuAction(#selector(delete(_:)))
     }
+    //MARK: - Custom menu actions for cells
     
+    override func didReceiveMenuWillShowNotification(notification: NSNotification!) {
+        /**
+         *  Display custom menu actions for cells.
+         */
+        let menu = notification.object as! UIMenuController
+//        menu.menuItems = @[ [[UIMenuItem alloc] initWithTitle:@"Custom Action" action:@selector(customAction:)] ];
+        menu.menuItems = [UIMenuItem(title: "Custom Action", action: #selector(customAction(_:)))]
+        
+        
+    }
 
   
     //MARK: - 收到消息
@@ -122,6 +152,13 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
                     audioItemCopy.audioData = nil;
                     
                     newMediaData = audioItemCopy;
+                }else if(copyMediaData is JSQPhotoMediaItem){
+                  let photoItem = copyMediaData as! JSQPhotoMediaItem
+                    photoItem.appliesMediaViewMaskAsOutgoing = false
+                    newMediaAttachmentCopy = UIImage(CGImage: photoItem.image.CGImage!)
+                    
+                    photoItem.image = nil
+                    newMediaData = photoItem
                 }
                 
                 else{
@@ -208,6 +245,7 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
         self.demoData.messages.addObject(message)
         
         self.finishSendingMessageAnimated(true)
+        
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
@@ -270,6 +308,7 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
     func getSenderId() -> String {
         return kJSQDemoAvatarIdSquires
     }
+    
     
     func getSenderDisplayName() -> String {
         return kJSQDemoAvatarDisplayNameSquires
@@ -401,10 +440,10 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
         super.collectionView(collectionView, performAction: action, forItemAtIndexPath: indexPath, withSender: sender)
     }
     //MARK: - UICollectionView DataSource
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.demoData.messages.count
     }
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? JSQMessagesCollectionViewCell
         
@@ -482,8 +521,8 @@ class ViewController: JSQMessagesViewController,JSQMessagesComposerTextViewPaste
 
     }
     
-    //MARK: - JSQMessagesComposerTextViewPasteDelegate methods
-    
+   
+  
 
 }
 
