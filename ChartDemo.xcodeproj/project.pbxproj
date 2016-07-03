@@ -16,6 +16,7 @@
 		49A9B3B11D27F2380037A0E9 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9B3B01D27F2380037A0E9 /* Setting.swift */; };
 		49A9B3B31D27F4D80037A0E9 /* DemoModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9B3B21D27F4D80037A0E9 /* DemoModelData.swift */; };
 		49A9B3B61D27FA430037A0E9 /* jsq_messages_sample.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 49A9B3B51D27FA430037A0E9 /* jsq_messages_sample.m4a */; };
+		49D24A9B1D28A3F40049DFA8 /* GuideTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D24A9A1D28A3F40049DFA8 /* GuideTableController.swift */; };
 		EE31CEE12BE64B3A192744B5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D900AB57B0E36CD79DCFD687 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		49A9B3B21D27F4D80037A0E9 /* DemoModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoModelData.swift; sourceTree = "<group>"; };
 		49A9B3B41D27F6090037A0E9 /* HeaderBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderBridge.h; sourceTree = "<group>"; };
 		49A9B3B51D27FA430037A0E9 /* jsq_messages_sample.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = jsq_messages_sample.m4a; sourceTree = "<group>"; };
+		49D24A9A1D28A3F40049DFA8 /* GuideTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableController.swift; sourceTree = "<group>"; };
 		D900AB57B0E36CD79DCFD687 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 				49A9B3B01D27F2380037A0E9 /* Setting.swift */,
 				49A9B3B21D27F4D80037A0E9 /* DemoModelData.swift */,
 				49A9B3B41D27F6090037A0E9 /* HeaderBridge.h */,
+				49D24A9A1D28A3F40049DFA8 /* GuideTableController.swift */,
 			);
 			path = ChartDemo;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				498757D41D274E1800FED101 /* AppDelegate.swift in Sources */,
 				49A9B3B31D27F4D80037A0E9 /* DemoModelData.swift in Sources */,
 				49A9B3B11D27F2380037A0E9 /* Setting.swift in Sources */,
+				49D24A9B1D28A3F40049DFA8 /* GuideTableController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

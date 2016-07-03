@@ -32,7 +32,7 @@ class DemoModelData: NSObject {
     //接收消息人的头像
     var incomingBubbleImageData:JSQMessagesBubbleImage!
     
-    var users:NSDictionary!
+    var users:[String:AnyObject]!
     
     override init() {
         super.init()
@@ -70,7 +70,7 @@ class DemoModelData: NSObject {
             kJSQDemoAvatarIdWoz : wozImgJSQ ];
         
         
-        self.users = [ kJSQDemoAvatarIdJobs : kJSQDemoAvatarDisplayNameJobs,
+        self.users = [kJSQDemoAvatarIdJobs : kJSQDemoAvatarDisplayNameJobs,
             kJSQDemoAvatarIdCook : kJSQDemoAvatarDisplayNameCook,
             kJSQDemoAvatarIdWoz : kJSQDemoAvatarDisplayNameWoz,
             kJSQDemoAvatarIdSquires : kJSQDemoAvatarDisplayNameSquires ];
